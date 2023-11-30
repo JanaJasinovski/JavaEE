@@ -30,17 +30,33 @@ public class TempServlet extends HttpServlet {
 //
 //        Map<String, String[]> parameterMap = req.getParameterMap();
 
-        System.out.println(req.getRequestURL());
-        System.out.println(req.getServletPath());
-        System.out.println(req.getRemoteHost());
-        System.out.println(req.getRequestURI());
-        System.out.println(req.getLocalPort());
+//        System.out.println(req.getRequestURL());
+//        System.out.println(req.getServletPath());
+//        System.out.println(req.getRemoteHost());
+//        System.out.println(req.getRequestURI());
+//        System.out.println(req.getLocalPort());
 
+        String one = req.getParameter("one");
+        String two = req.getParameter("two");
+
+        String s = "<html>" +
+                "<head></head>" +
+                "<header><title>This is title</title></header>" +
+                "<body>" +
+                "one = " + one +
+                "two = " + two +
+                "<form action='temp' method='get'>" +
+                "<input type='text' name='one'/>" +
+                "<input type='text' name='two'/>" +
+                "</body>" +
+                "</html>";
+
+        resp.getWriter().write(s);
 
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        doGet(req, resp);
     }
 }
