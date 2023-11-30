@@ -2,6 +2,7 @@ package org.java.ee;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,13 +17,20 @@ public class TempServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        resp.setStatus(HttpServletResponse.SC_OK);
-//        resp.sendRedirect("/hello");
-//        resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "blalaa");
+        Cookie[] cookies = req.getCookies();
+        for (Cookie cookie: cookies) {
+            System.out.println(cookie.getName());
+            System.out.println(cookie.getValue());
+            System.out.println(cookie.getMaxAge() );
+        }
 
-//        resp.setHeader("Refresh", "1");
-//        System.out.println("hello");
-        resp.setHeader("Refresh", "5;URL=https://google.com");
+        Cookie cookie = new Cookie("testCookie", "abc");
+//        cookie.setPath("/temp.html");
+//        cookie.setDomain("my.localhost.com");
+//        cookie.setSecure(true);
+        cookie.setMaxAge(5);
+        resp.addCookie(cookie);
+
     }
 
 }
