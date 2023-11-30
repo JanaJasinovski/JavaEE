@@ -37,8 +37,8 @@ public class TempServlet extends HttpServlet {
 //        System.out.println(req.getLocalPort());
 
         String one = req.getParameter("one");
-        String two = req.getParameter("two");
 
+        one = one == null ? "" : one.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
         String s = "<html>" +
                 "<head></head>" +
                 "<header><title>This is title</title></header>" +
