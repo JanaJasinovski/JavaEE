@@ -14,44 +14,21 @@ public class TempServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        String one = req.getParameter("one");
-//        String two = req.getParameter("two");
-//        System.out.println(one);
-//        String[] ones = req.getParameterValues("one");
-//        for (String s: ones) {
-//            System.out.println(s);
+//        Enumeration<String> headerNames = req.getHeaderNames();
+//        while (headerNames.hasMoreElements()) {
+//            String s = headerNames.nextElement();
+//            System.out.println(s + " = " + req.getHeader(s));
 //        }
 
-//        Enumeration<String> parameterNames = req.getParameterNames();
-//        while (parameterNames.hasMoreElements()) {
-//            String element = parameterNames.nextElement();
-//            System.out.println(element + " = " + req.getParameter(element));
-//        }
-//
-//        Map<String, String[]> parameterMap = req.getParameterMap();
+        System.out.println(req.getAuthType());
+        System.out.println(req.getContentType());
+        System.out.println(req.getContentLength());
+        System.out.println(req.getMethod());
+        System.out.println(req.getRequestURI());
+        System.out.println(req.getQueryString());
+        System.out.println(req.getProtocol());
 
-//        System.out.println(req.getRequestURL());
-//        System.out.println(req.getServletPath());
-//        System.out.println(req.getRemoteHost());
-//        System.out.println(req.getRequestURI());
-//        System.out.println(req.getLocalPort());
-
-        String one = req.getParameter("one");
-
-        one = one == null ? "" : one.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
-        String s = "<html>" +
-                "<head></head>" +
-                "<header><title>This is title</title></header>" +
-                "<body>" +
-                "one = " + one +
-                "<form action='temp' method='post'>" +
-                "<textarea name='one'></textarea>" +
-                "<input type='submit' name='submit'/>" +
-                "</body>" +
-                "</html>";
-
-        resp.getWriter().write(s);
-
+        resp.setHeader("Content-Length:", "100");
     }
 
     @Override
